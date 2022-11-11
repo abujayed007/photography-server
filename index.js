@@ -5,6 +5,7 @@ const app = express();
 const port = process.env.PORT || 5001 ;
 require('dotenv').config();
 
+//middleware
 app.use(express.json());
 app.use(cors());
 
@@ -13,9 +14,12 @@ const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology:
 
 
 async function run (){
-    try{
+
+  try{
+      // Collections 
   const serviceCollection = client.db("photography").collection("service");
  const cliendReviews = client.db("photography").collection("clientReviews");
+
 
   // service items
   
