@@ -21,6 +21,7 @@ async function run (){
  const cliendReviews = client.db("photography").collection("clientReviews");
 
   // service items
+  
   app.get('/services',  async (req, res)=>{
     const page = parseInt(req.query.page);
     const size = parseInt(req.query.size);
@@ -74,6 +75,13 @@ async function run (){
     const result = await cliendReviews.insertOne(review);
     res.send(result)
   });
+  
+  app.delete('/review/:id', async(req, res)=>{
+    const id = req.params.id
+    const query = {_id: ObjectId(id)}
+    const result = await cliendReviews.deleteOne(query)
+    res.send(result)
+  })
 
     }
     finally{
